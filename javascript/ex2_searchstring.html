@@ -9,7 +9,23 @@
 <body>
     <script type="text/javascript">
         function search(){
+            var text = document.getElementById("textarea").value;
+            var arr_text = text.split(" ");
+            var sc = document.querySelector("input[name='radio']:checked").value;
+            var keyword = document.getElementById("keyword").value;
+            var count = 0;
+
+            arr_text.forEach(key => {
+                if (sc == "no") {
+                    keyword = keyword.toLowerCase();
+                    key = key.toLowerCase();
+                }
+                if (key.search(keyword) > -1) {
+                    count++;
+                }
+            });
             
+            document.getElementById("output").innerHTML = count;
         }
     </script>
     <center>
@@ -19,16 +35,15 @@
         <textarea id="textarea"></textarea>
         <br><br>
         Sensitive Case : 
-        <input type="radio">Yes
-        <input type="radio">No
+        <input type="radio" name="radio" value="yes" checked>Yes
+        <input type="radio" name="radio" value="no">No
         <br><br>
         Search : 
-        <input type="text" id="input">
+        <input type="text" id="keyword">
         <br><br>
         <button onclick="search()">search</button>
         <br><br>
-        Result for Search : 
-        <p id="output"></p>
+        Result for Search : <span id="output"></span>
     </center>
 </body>
 </html>
