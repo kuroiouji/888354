@@ -22,8 +22,6 @@
         }
         function checkAnswer(){
             var ans = $("#ans").val();
-            // var sp1 = parseInt($("#sp1").html());
-            // var sp2 = parseInt($("#sp2").html());
             var chk = parseInt($("#sp1").html()) + parseInt($("#sp2").html());
             var str = "";
             var color = "";
@@ -35,7 +33,6 @@
                 color = "red";
             }
             $("#output").css("color",color).html(str);
-            // $("#output").html(str);
         }
     </script>
 </head>
