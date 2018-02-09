@@ -11,12 +11,14 @@
             randomNumber();
         });
         function randomNumber(){
-            var max = 999;
-            var min = -999;
+            var max = 1000;
+            var min = -1000;
             var sp1 = Math.floor(Math.random() * (max - min)) + min;
-            var sp2 = Math.floor(Math.random() * max) + 1;
+            var sp2 = Math.floor(Math.random() * (max - min)) + min;
             $("#sp1").html(sp1);
             $("#sp2").html(sp2);
+            $("#ans").val("");
+            $("#output").html("");
         }
         function checkAnswer(){
             var ans = $("#ans").val();
@@ -32,8 +34,8 @@
                 str = "That's wrong. The answer is " + chk;
                 color = "red";
             }
-            $("#output").css("color",color);
-            $("#output").html(str);
+            $("#output").css("color",color).html(str);
+            // $("#output").html(str);
         }
     </script>
 </head>
@@ -43,7 +45,7 @@
         <hr>
         <button onclick="randomNumber()">Randdom Number</button>
         <br><br>
-        <span id="sp1"></span> + <span id="sp2"></span> = <input type="text" id="ans">
+        <span id="sp1"></span> + <span id="sp2"></span> = <input type="number" id="ans">
         <br><br>
         <button onclick="checkAnswer()">Send Answer</button>
         <br><br>
