@@ -1,0 +1,32 @@
+<h1>About Us</h1>
+<hr>
+<h3>
+  <ul>
+    <li>code : {{code}}</li>
+    <li>name : {{name}}</li>
+    <li>e-mail : {{email}}</li>
+    <li>Education : {{edu.major}} {{edu.faculty}} {{edu.university}}</li>
+    <li>
+      Skill
+      <form (submit)="addSkill(skill.value)">
+        <input type="text" #skill placeholder="Add skill ...">
+      </form>
+      <ul>
+        <li *ngFor="let skill of skills; let i = index">
+          {{skill}}
+          <button (click)="removeSkill(skill)"> x </button>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</h3>
+<h3>Edit Profile</h3>
+<div>
+  <label for="code">Code : </label>
+  <input type="text" [(ngModel)]="code" name="code">
+</div>
+<br>
+<div>
+  <label for="name">Name : </label>
+  <input type="text" [(ngModel)]="name" name="name">
+</div>

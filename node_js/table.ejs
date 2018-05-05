@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Datatable</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+</head>
+
+<body>
+    <script>
+        $(document).ready(function () {
+            renderTable();
+        });
+
+        function renderTable() {
+            $("#tb_list").DataTable({
+                bDestroy: true,
+                processing: true,
+                ajax: {
+                    type: "GET",
+                    url: "https://jsonplaceholder.typicode.com/users",
+                    data: {},
+                    dataType: "json",
+                    dataSrc: function (result) {
+                        // console.log(result);
+                        var return_data = new Array();
+                        $(result).each(function (seq, data) {
+                            return_data.push({
+                                "seq": (seq+1),
+                                "name": data.name,
+                                "phone": data.phone,
+                                "username": data.username,
+                                "website": data.website,
+                                "company": data.company.name,
+                            });
+                        }); //end project for
+                        return return_data;
+                    } //end dataSrc
+                }, //end ajax
+                "columns": [{
+                        "data": "seq"
+                    },
+                    {
+                        "data": "name"
+                    },
+                    {
+                        "data": "phone"
+                    },
+                    {
+                        "data": "username"
+                    },
+                    {
+                        "data": "website"
+                    },
+                    {
+                        "data": "company"
+                    }
+                ],
+                "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                    //console.log(aData.type);
+                    /* nRow.setAttribute("id", "tr_" + aData.pj_id);
+                    if (aData.type == "ac") {
+                        nRow.setAttribute("class", "gray");
+                        //console.log(aData.seq);
+                        $('td:eq(0)', nRow).css("text-align", "right");
+                        //aData["seq"].setAttribute("class","gray");
+
+
+                    } */
+
+
+                }
+            }); //end DataTable
+        }
+    </script>
+    <nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				    aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="">Skill Traning Datatable</a>
+			</div>
+		</div>
+	</nav>
+    <div data-widget-group="group1">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Datatable</h2>
+                    </div>
+                    <div class="panel-body" style="padding: 5px">
+                        <table id="tb_list" class="table table-hover table-inbox table-vam" cellspacing="0" width="100%">
+                            <thead>
+                                <tr class="info">
+                                    <th>
+                                        <center>#</center>
+                                    </th>
+                                    <th>
+                                        <center>name</center>
+                                    </th>
+                                    <th>
+                                        <center>phone</center>
+                                    </th>
+                                    <th>
+                                        <center>username</center>
+                                    </th>
+                                    <th>
+                                        <center>website</center>
+                                    </th>
+                                    <th>
+                                        <center>company</center>
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+
+                    </div>
+                    <!-- panel-body -->
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+    </div>
+    <!-- group1 -->
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<h1>User Lists</h1>
+<hr>
+<table border="1" width="80%">
+  <tr>
+    <th>ลำดับ</th>
+    <th>ชื่อ - นามสกุล</th>
+    <th>ชื่อผู้ใช้</th>
+    <th>อีเมล</th>
+    <th>เบอร์โทร</th>
+  </tr>
+  <tr *ngFor="let user of userLists;let i = index">
+    <td>{{i+1}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td> 
+    <td>{{user.phone}}</td> 
+  </tr>
+</table>
